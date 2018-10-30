@@ -76,7 +76,7 @@ class App extends Component {
           </Col>
           {
             boolSelected &&
-            <Col md='4' lg='6'>
+            <Col md='4' lg='6' id='right-side'>
               <RightSide selectedCandy={selectedCandy} changeBoolSelected={this.changeBoolSelected} />
             </Col>
           }
