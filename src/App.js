@@ -17,12 +17,14 @@ class App extends Component {
       filter: '',
       candies: [],
       selectedCandy: [],
-      boolSelected: false
+      boolSelected: false,
+      showMyCandies: false
     }
     this.changePage = this.changePage.bind(this);
     this.changeBoolSelected = this.changeBoolSelected.bind(this);
     this.changeSelectedCandy = this.changeSelectedCandy.bind(this);
     this.handleCandySelect = this.handleCandySelect.bind(this);
+    this.showMyCandies = this.showMyCandies.bind(this);
   }
 
   componentDidMount(){
@@ -66,18 +68,38 @@ class App extends Component {
     this.changeSelectedCandy(candy);
   }
 
+  showMyCandies() {
+    this.setState({
+      showMyCandies: !this.state.showMyCandies,
+      boolSelected: false
+    })
+  }
+
   render() {
-    const { numPage, candies, boolSelected, selectedCandy } = this.state;
+    const { numPage, candies, boolSelected, selectedCandy, showMyCandies } = this.state;
+    const candiesFromStorage = JSON.parse(localStorage.getItem('my_candies'));
+    const candiesToShow = showMyCandies ? candiesFromStorage : candies;
     return (
       <Container fluid id="App">
         <Row>
-          <Col md='6' lg='4'>
-            <DisplayCandies numPage={numPage} candies={candies} changePage={this.changePage} handleCandySelect={this.handleCandySelect} />
+          <Col md='6' lg='4' id='left-side' className='z-depth-2'>
+            <DisplayCandies
+            numPage={numPage}
+            candies={candiesToShow}
+            changePage={this.changePage}
+            handleCandySelect={this.handleCandySelect}
+            showMyCandies={this.showMyCandies}
+            boolShowMyCandies={this.state.showMyCandies}
+          />
           </Col>
           {
             boolSelected &&
-            <Col md='4' lg='6' id='right-side'>
-              <RightSide selectedCandy={selectedCandy} changeBoolSelected={this.changeBoolSelected} />
+            <Col md='6' lg='8' id='right-side'>
+              <RightSide
+                selectedCandy={selectedCandy}
+                changeBoolSelected={this.changeBoolSelected}
+                boolShowMyCandies={this.state.showMyCandies}
+                />
             </Col>
           }
         </Row>

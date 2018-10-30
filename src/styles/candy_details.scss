@@ -1,9 +1,34 @@
 #right-side{
-  img{
-    max-width: 50%;
-  }
+  padding: 0;
 
-  .badge{
-    text-transform: capitalize;
+  .card{
+    height: 100vh;
+
+    .card-header{
+      height: 81px;
+    }
+
+    .card-footer{      
+      height: 83px;
+    }
+
+    img{
+      max-width: 50%;
+    }
+
+    .badge{
+      text-transform: capitalize;
+    }
+
+    .detail-box{
+      margin-bottom: 2em;
+    }
+
+    .card-body{
+      background: url(../img/red.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: white;
+    }
   }
 }

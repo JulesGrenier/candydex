@@ -1,0 +1,133 @@
+@font-face{
+  font-family: 'hallowed_eve';
+  src: url('./../font/hallowed_eve/Hallowed Eve Sample.ttf')
+}
+
+@font-face{
+  font-family: 'lunacy_more';
+  src: url(./../font/lunacy_more/LunacyMore.ttf)
+}
+
+@font-face{
+  font-family: 'spooky_halloween';
+  src: url('./../font/spooky_halloween/Spooky Halloween - TTF.ttf')
+}
+
+$purple: #4a148c;
+$blue: #2e3951;
+$orange: #bf360c;
+$red: #b71c1c;
+$brown: #3e2723;
+$grey: #424242;
+
+$white: #DDD;
+
+.bgBlue{
+  background: $blue!important;
+}
+
+.bgRed{
+  background: $red!important;
+}
+
+.bgPurple{
+  background: $purple!important;
+}
+
+.bgOrange{
+  background: $orange!important;
+}
+
+.bgGrey{
+  background: $grey!important;
+}
+
+.bgBrown{
+  background: $brown!important;
+}
+
+.badge{
+  color: $white;
+}
+
+#left-side{
+  padding: 0;
+
+  .card{
+    height: 100vh;
+
+    .card-header{
+      height: 81px;
+    }
+    
+    .card-body{
+      background: #BC2423;
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: $white;
+      text-shadow: 1px 1px 2px black;
+
+      .candy{
+        cursor: pointer;
+
+        &:hover{
+          color: #AAA;
+        }
+      }
+    }
+
+    .card-footer{
+      color: $white;
+      height: 83px;
+    }
+  }
+}
+
+#root{
+  font-family: cursive;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+  text-shadow: 1px 1px 2px black;
+}
+
+h1, .h1{
+  font-family: 'hallowed_eve';
+}
+
+h4{
+  font-family: 'lunacy_more';
+  font-weight: 900!important;
+  letter-spacing: 2px;
+  font-size: 2em;
+}
+
+.card-body{
+
+  .detail-box{
+
+    h5{
+      font-family: 'spooky_halloween';
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+  }
+
+}
+
+.card-header{
+  background: linear-gradient( #dd2c00, #8a0707);
+  color: #f5f5f5;
+}
+
+.card-footer{
+  background-color: #2e2e2e;
+}
+
+.btn{
+  border-radius: 2em;
+
+  .btn-red{
+    background-color: #8a0707!important;
+  }
+}

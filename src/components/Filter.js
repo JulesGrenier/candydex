@@ -5,7 +5,7 @@ class Filter extends Component {
     render() {
         return (
             <Button color='elegant'>
-                yo
+                Filtres
             </Button>
         );
     }
