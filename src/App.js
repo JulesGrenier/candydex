@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
     this.state = {
       numPage: 1,
-      filter: '',
+      fetchFilter: 'https://ssl-api.openfoodfacts.org/category/candies/',
       candies: [],
       selectedCandy: [],
       boolSelected: false,
@@ -25,11 +25,13 @@ class App extends Component {
     this.changeSelectedCandy = this.changeSelectedCandy.bind(this);
     this.handleCandySelect = this.handleCandySelect.bind(this);
     this.showMyCandies = this.showMyCandies.bind(this);
+    this.changeFetchFilter = this.changeFetchFilter.bind(this);
+
   }
 
   componentDidMount(){
-    const { numPage } = this.state;
-    fetch(`https://ssl-api.openfoodfacts.org/category/candies/${numPage}.json`)
+    const { numPage, fetchFilter} = this.state;
+    fetch(`${fetchFilter}${numPage}.json`)
     .then(results => results.json())
     .then(candies => this.setState(
       {
@@ -39,8 +41,9 @@ class App extends Component {
   }
 
   changePage(i) {
-    const numPageTemp = this.state.numPage + i
-    fetch(`https://ssl-api.openfoodfacts.org/category/candies/${numPageTemp}.json`)
+    const { numPage, fetchFilter} = this.state;
+    const numPageTemp = numPage + i
+    fetch(`${fetchFilter}${numPageTemp}.json`)
     .then(results => results.json())
     .then(candies => this.setState(
       {
@@ -48,6 +51,20 @@ class App extends Component {
         candies: candies
       }
     ))
+  }
+
+  changeFetchFilter(baseUrl) {
+    const { numPage } = this.state;
+    fetch(`${baseUrl}${numPage}.json`)
+      .then(results => results.json())
+      .then(candies => this.setState(
+        {
+          candies: candies,
+          fetchFilter: baseUrl,
+          numPage: 1
+        }
+      )
+    )
   }
 
 
@@ -76,9 +93,10 @@ class App extends Component {
   }
 
   render() {
-    const { numPage, candies, boolSelected, selectedCandy, showMyCandies } = this.state;
+    const { numPage, candies, boolSelected, selectedCandy, showMyCandies} = this.state;
     const candiesFromStorage = JSON.parse(localStorage.getItem('my_candies'));
     const candiesToShow = showMyCandies ? candiesFromStorage : candies;
+    //this.updateFetch()
     return (
       <Container fluid id="App">
         <Row>
@@ -90,6 +108,7 @@ class App extends Component {
             handleCandySelect={this.handleCandySelect}
             showMyCandies={this.showMyCandies}
             boolShowMyCandies={this.state.showMyCandies}
+            changeFetchFilter={this.changeFetchFilter}
           />
           </Col>
           {
