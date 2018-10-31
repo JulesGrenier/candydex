@@ -20,7 +20,7 @@ class DisplayCandies extends Component {
 
     return(
       <Card>
-        <CardHeader><h1 className='text-center'>Spookydex</h1></CardHeader>
+        <CardHeader><h1 className='text-center'>Sweedex</h1></CardHeader>
 
         <CardBody>
           <h4 className='text-center my-3'>{boolShowMyCandies ? 'Mes bonbons' : 'Bonbons a collecter'}</h4>

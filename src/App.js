@@ -79,6 +79,8 @@ class App extends Component {
     const { numPage, candies, boolSelected, selectedCandy, showMyCandies } = this.state;
     const candiesFromStorage = JSON.parse(localStorage.getItem('my_candies'));
     const candiesToShow = showMyCandies ? candiesFromStorage : candies;
+    const showRightSide = boolSelected ? 'show' : '';
+
     return (
       <Container fluid id="App">
         <Row>
@@ -94,7 +96,7 @@ class App extends Component {
           </Col>
           {
             boolSelected &&
-            <Col md='6' lg='8' id='right-side'>
+            <Col md='6' lg='8' id='right-side' className={showRightSide}>
               <RightSide
                 selectedCandy={selectedCandy}
                 changeBoolSelected={this.changeBoolSelected}

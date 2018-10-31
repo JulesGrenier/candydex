@@ -52,14 +52,17 @@ $white: #DDD;
 
 #left-side{
   padding: 0;
+  z-index: 2;
 
   .card{
     height: 100vh;
+    border-radius: 0;
 
     .card-header{
       height: 81px;
+      border-radius: 0;
     }
-    
+
     .card-body{
       background: #BC2423;
       background-size: cover;
@@ -79,6 +82,7 @@ $white: #DDD;
     .card-footer{
       color: $white;
       height: 83px;
+      border-radius: 0;
     }
   }
 }
