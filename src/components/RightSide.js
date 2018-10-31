@@ -7,8 +7,7 @@ import {
   CardFooter,
   Button,
   Fa,
-  Badge,
-  Collapse
+  Badge
 } from 'mdbreact';
 
 import no_img from '../img/no.gif';
@@ -18,15 +17,8 @@ class RightSide extends Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      collapse: false,
-    };
 
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.addToMyList = this.addToMyList.bind(this);
   }
 
   addToMyList(candy){
@@ -62,7 +54,6 @@ class RightSide extends Component {
       _id
     } = selectedCandy;
     const img = image_front_small_url ? image_front_small_url : no_img;
-    const orientation = this.state.collapse ? 'down' : 'right' ;
     let localIdArr = JSON.parse(localStorage.getItem('candies_id'));
     if(!localIdArr) {
       localIdArr = []
@@ -84,7 +75,7 @@ class RightSide extends Component {
                 <div className='detail-box'>
                   <h5>Marque(s) :</h5>
                   {
-                    brands_tags.map((brand, idx) => <Badge className='z-depth-5 mx-1 bgBlue' key={idx}>{brand}</Badge>)
+                    brands_tags.map((brand, idx) => <Badge className='z-depth-5 mx-1 mb-2 bgBlue' key={idx}>{brand}</Badge>)
                   }
                 </div>
               }
@@ -94,7 +85,7 @@ class RightSide extends Component {
                 <div className='detail-box'>
                   <h5>Catégories : </h5>
                   {
-                    categories_tags.map((cat, idx) => <Badge className='z-depth-5 mx-1 bgBlue' key={idx}>{cat}</Badge>)
+                    categories_tags.map((cat, idx) => <Badge className='z-depth-5 mx-1 mb-2 bgBlue' key={idx}>{cat}</Badge>)
                   }
                 </div>
               }
@@ -103,7 +94,7 @@ class RightSide extends Component {
                 quantity && quantity.length !== 0 &&
                 <div className='detail-box'>
                   <h5>Quantité : </h5>
-                  <Badge className='z-depth-5 mx-1 bgBlue'>{quantity}</Badge>
+                  <Badge className='z-depth-5 mx-1 mb-2 bgBlue'>{quantity}</Badge>
                 </div>
               }
 
@@ -112,7 +103,7 @@ class RightSide extends Component {
                 <div className='detail-box'>
                   <h5>Emballage : </h5>
                   {
-                    packaging_tags.map((pack, idx) => <Badge className='z-depth-5 mx-1 bgBlue' key={idx}>{pack}</Badge>)
+                    packaging_tags.map((pack, idx) => <Badge className='z-depth-5 mx-1 mb-2 bgBlue' key={idx}>{pack}</Badge>)
                   }
                 </div>
               }
@@ -120,14 +111,12 @@ class RightSide extends Component {
               {
                 ingredients && ingredients.length !== 0 &&
                 <div className='detail-box'>
-                  <h5 onClick={this.toggle} style={{cursor: 'pointer'}}>
-                    Ingrédients <Fa icon={`chevron-${orientation}`} className='align-middle ml-1' />
+                  <h5>
+                    Ingrédients :
                   </h5>
-                  <Collapse isOpen={this.state.collapse}>
                     {
-                      ingredients.map((ing, idx) => <Badge className='z-depth-5 mx-1 bgBlue' key={idx}>{ing.text}</Badge>)
+                      ingredients.map((ing, idx) => <Badge className='z-depth-5 mx-1 mb-2 bgBlue' key={idx}>{ing.text}</Badge>)
                     }
-                  </Collapse>
                 </div>
               }
 
@@ -136,7 +125,7 @@ class RightSide extends Component {
                 <div className='detail-box'>
                   <h5>Allergènes :</h5>
                   {
-                    allergens_tags.map((all, idx) => <Badge className='z-depth-5 mx-1 bgBlue' key={idx}>{all}</Badge>)
+                    allergens_tags.map((all, idx) => <Badge className='z-depth-5 mx-1 mb-2 bgBlue' key={idx}>{all}</Badge>)
                   }
                 </div>
               }
@@ -150,7 +139,7 @@ class RightSide extends Component {
             {
               !localIdArr.includes(_id) &&
               <Button color='red' onClick={() => this.addToMyList(selectedCandy)}>
-                J'ai choppé !
+                Collecter
               </Button>
             }
           </CardFooter>

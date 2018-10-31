@@ -69,6 +69,8 @@ $white: #DDD;
       background-repeat: no-repeat;
       color: $white;
       text-shadow: 1px 1px 2px black;
+      overflow-y: auto;
+      z-index: 10;
 
       .candy{
         cursor: pointer;
