@@ -63,7 +63,10 @@ class RightSide extends Component {
     } = selectedCandy;
     const img = image_front_small_url ? image_front_small_url : no_img;
     const orientation = this.state.collapse ? 'down' : 'right' ;
-    const localIdArr = JSON.parse(localStorage.getItem('candies_id'));
+    let localIdArr = JSON.parse(localStorage.getItem('candies_id'));
+    if(!localIdArr) {
+      localIdArr = []
+    }
 
     return(
       <Card>

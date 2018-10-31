@@ -33,7 +33,7 @@ class DisplayCandies extends Component {
             boolTest &&
             candies.products.map((candy, key) => {
               return (
-                localIdArr.includes(candy._id)
+                localStorage.getItem('my_candies') && localIdArr.includes(candy._id)
                 ? <div>
                     <span className='candy' key={key} onClick={() => this.props.handleCandySelect(candy)}>{candy.product_name}</span>
                     <span><Fa icon='blind'/></span>
