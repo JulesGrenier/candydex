@@ -12,7 +12,7 @@ import Filter from './Filter';
 class DisplayCandies extends Component {
 
   render(){
-    const { numPage, candies, boolShowMyCandies } = this.props;
+    const { numPage, candies, boolShowMyCandies, changeFetchFilter } = this.props;
     const btnText = boolShowMyCandies ? 'À Collecter' : 'Mes Bonbons';
     const boolTest = boolShowMyCandies ? localStorage.getItem('my_candies') : candies.length !== 0;
     const localIdArr = JSON.parse(localStorage.getItem('candies_id'));
@@ -25,23 +25,31 @@ class DisplayCandies extends Component {
         <CardBody>
           <h4 className='text-center my-3'>{boolShowMyCandies ? 'Mes bonbons' : 'Bonbons a collecter'}</h4>
           <div className="actions d-flex justify-content-center">
-            <Filter />
-            <Button onClick={this.props.showMyCandies} color='elegant'>{btnText}</Button>
+            {
+              !boolShowMyCandies &&
+                <Filter
+                  changeFetchFilter={changeFetchFilter}
+                />
+            }
           </div>
+          <Button className="d-flex text-center mx-auto" onClick={this.props.showMyCandies} color='elegant'>{btnText}</Button>
           <hr />
-          {
-            boolTest &&
-            candies.products.map((candy, key) => {
-              return (
-                localStorage.getItem('my_candies') && localIdArr.includes(candy._id)
-                ? <div>
-                    <span className='candy' key={key} onClick={() => this.props.handleCandySelect(candy)}>{candy.product_name}</span>
-                    <span><Fa icon='blind'/></span>
-                  </div>
-                : <div className='candy' key={key} onClick={() => this.props.handleCandySelect(candy)}>{candy.product_name}</div>
-              )
-            })
-          }
+          <div className="candies_list">
+            {
+              boolTest &&
+              candies.products.map((candy, key) => {
+                return (
+                  localStorage.getItem('my_candies') && localIdArr.includes(candy._id)
+                  ? <div>
+                      <span><Fa icon='blind' className="mx-1"/></span>
+                      <span className='candy' key={key} onClick={() => this.props.handleCandySelect(candy)}>{candy.product_name}</span>
+                      <span><Fa icon='blind' className="mx-2"/></span>
+                    </div>
+                  : <div className='candy' key={key} onClick={() => this.props.handleCandySelect(candy)}>{candy.product_name}</div>
+                )
+              })
+            }
+          </div>
         </CardBody>
 
         {
